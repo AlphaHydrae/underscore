@@ -1171,7 +1171,8 @@
   _.result = function(object, property) {
     if (object == null) return void 0;
     var value = object[property];
-    return _.isFunction(value) ? object[property]() : value;
+    var args = slice.call(arguments, 2);
+    return _.isFunction(value) ? object[property].apply(object, args) : value;
   };
 
   // Add your own custom functions to the Underscore object.
